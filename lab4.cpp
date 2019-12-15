@@ -1,4 +1,7 @@
 ﻿#include <iostream>
+#include <ctime>
+
+clock_t czas;
 
 int menuChoice;
 void fibonacci(int size) {
@@ -8,10 +11,12 @@ void fibonacci(int size) {
 		b += a;
 		a = b - a;
 	}
+	czas = clock();
 }
 long long int fibonacci_rec(int size) {
 	if (size == 0) return 0;
 	if (size == 1) return 1;
+	czas = clock();
 	return fibonacci_rec(size - 1) + fibonacci_rec(size - 2);
 }
 void menu() {
@@ -34,6 +39,7 @@ int main()
 			std::cout << "Enter the number: ";
 			std::cin >> size;
 			fibonacci(size);
+			std::cout << std::endl << "czas wykonania: " << czas << "ms" << std::endl;
 			system("pause");
 			menu();
 		}
@@ -44,6 +50,7 @@ int main()
 				std::cout << fibonacci_rec(i) << " ";
 			}
 			std::cout << std::endl;
+			std::cout << std::endl << "czas wykonania: " << czas << "ms" << std::endl;
 			system("pause");
 			menu();
 		}
